@@ -1,69 +1,34 @@
-# React + TypeScript + Vite
+# 👋 Hi, I'm Haris Firman Ardiansyah
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🚀 Mobile Developer | 📍 Based in Jember, Indonesia  
 
-Currently, two official plugins are available:
+Passionate about building **mobile & web applications** that not only work, but also create meaningful impact for users.  
+Currently diving deep into **Flutter, Kotlin, and Laravel**, while always curious to explore new technologies and design trends.  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
+- **Mobile Development:** Flutter (Dart), Kotlin, Jetpack Compose  
+- **Web Development:** Laravel, React + Tailwind  
+- **Database:** PostgreSQL, MySQL, Firebase  
+- **Tools & Workflow:** GitHub, Postman, Figma, Agile Scrum  
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## ✨ What I Love to Do
+- Crafting apps with clean UI/UX & scalable architecture  
+- Solving real-world problems through digital solutions  
+- Collaborating with cross-functional teams & learning continuously  
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🎯 Highlights
+- 📱 Experience in **building cross-platform mobile apps** with Flutter  
+- 🌐 Worked on **web platforms** that support academic & research projects  
+- 🏆 Achievements in competitions (IoT, UI/UX, Animation)  
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📬 Let’s Connect
+- 💼 [LinkedIn](https://www.linkedin.com/in/haris-ardiansyah-835119247/)  
+- 📧 harisfirman387@gmail.com  
