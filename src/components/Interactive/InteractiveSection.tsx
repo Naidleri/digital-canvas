@@ -20,7 +20,6 @@ const InteractiveHarisSection = () => {
   };
 
   const techIcons = [
-    // Frontend Technologies - Top area (better spaced)
     { icon: 'devicon-react-original', name: 'React', color: '#61DAFB', x: -450, y: -500 },
     { icon: 'devicon-nextjs-plain', name: 'Next.js', color: '#000000', x: -150, y: -550 },
     { icon: 'devicon-typescript-original', name: 'TypeScript', color: '#3178C6', x: 150, y: -500 },
@@ -30,7 +29,6 @@ const InteractiveHarisSection = () => {
     { icon: 'devicon-css3-plain', name: 'CSS3', color: '#1572B6', x: -450, y: -300 },
     { icon: 'devicon-vuejs-plain', name: 'Vue.js', color: '#4FC08D', x: 750, y: -300 },
     
-    // Backend Technologies - Left side (well spaced)
     { icon: 'devicon-nodejs-plain', name: 'Node.js', color: '#339933', x: -600, y: -150 },
     { icon: 'devicon-express-original', name: 'Express.js', color: '#000000', x: -350, y: -100 },
     { icon: 'devicon-postgresql-plain', name: 'PostgreSQL', color: '#336791', x: -600, y: 100 },
@@ -38,46 +36,38 @@ const InteractiveHarisSection = () => {
     { icon: 'devicon-php-plain', name: 'PHP', color: '#777BB4', x: -850, y: 50 },
     { icon: 'devicon-laravel-plain', name: 'Laravel', color: '#FF2D20', x: -600, y: 300 },
     
-    // DevOps & Tools - Right side (properly spaced)
     { icon: 'devicon-docker-plain', name: 'Docker', color: '#2496ED', x: 500, y: -200 },
     { icon: 'devicon-git-plain', name: 'Git', color: '#F05032', x: 750, y: -100 },
     { icon: 'devicon-github-original', name: 'GitHub', color: '#181717', x: 500, y: 50 },
     { icon: 'devicon-githubactions-plain', name: 'GitHub Actions', color: '#2088FF', x: 800, y: 100 },
     { icon: 'devicon-nginx-original', name: 'Nginx', color: '#009639', x: 550, y: 250 },
     
-    // Development Tools - Bottom area (spread out)
-    { icon: 'devicon-vscode-plain', name: 'VS Code', color: '#007ACC', x: -200, y: 350 },
-    { icon: 'devicon-figma-plain', name: 'Figma', color: '#F24E1E', x: 100, y: 400 },
-    { icon: 'devicon-linux-plain', name: 'Linux', color: '#FCC624', x: -50, y: 550 },
-    { icon: 'devicon-ubuntu-plain', name: 'Ubuntu', color: '#E95420', x: -400, y: 500 },
+    { icon: 'devicon-vscode-plain', name: 'VS Code', color: '#007ACC', x: -100, y: -50 },
+    { icon: 'devicon-figma-plain', name: 'Figma', color: '#F24E1E', x: 150, y: 80 },
+    { icon: 'devicon-linux-plain', name: 'Linux', color: '#FCC624', x: -250, y: 120 },
+    { icon: 'devicon-ubuntu-plain', name: 'Ubuntu', color: '#E95420', x: 280, y: -80 },
     
-    // Build Tools & Frameworks (center-bottom area)
-    { icon: 'devicon-vitejs-plain', name: 'Vite', color: '#646CFF', x: 250, y: 300 },
-    { icon: 'devicon-webpack-plain', name: 'Webpack', color: '#8DD6F9', x: 450, y: 400 },
-    { icon: 'devicon-babel-original', name: 'Babel', color: '#F9DC3E', x: 350, y: 550 },
-    { icon: 'devicon-npm-original-wordmark', name: 'NPM', color: '#CB3837', x: -300, y: 650 },
-    { icon: 'devicon-yarn-original', name: 'Yarn', color: '#2C8EBB', x: 100, y: 650 },
+    { icon: 'devicon-vitejs-plain', name: 'Vite', color: '#646CFF', x: -180, y: 200 },
+    { icon: 'devicon-webpack-plain', name: 'Webpack', color: '#8DD6F9', x: 320, y: 180 },
+    { icon: 'devicon-babel-original', name: 'Babel', color: '#F9DC3E', x: -80, y: -180 },
+    { icon: 'devicon-npm-original-wordmark', name: 'NPM', color: '#CB3837', x: 50, y: 220 },
+    { icon: 'devicon-yarn-original', name: 'Yarn', color: '#2C8EBB', x: -350, y: -120 },
     
-    // Cloud & Deployment - Far corners (well separated)
     { icon: 'devicon-amazonwebservices-plain', name: 'AWS', color: '#232F3E', x: -800, y: 600 },
     { icon: 'devicon-firebase-plain', name: 'Firebase', color: '#FFCA28', x: 800, y: 600 },
     { icon: 'devicon-vercel-original', name: 'Vercel', color: '#000000', x: -550, y: 450 },
     
-    // Additional Languages & Frameworks (outer ring)
     { icon: 'devicon-python-plain', name: 'Python', color: '#3776AB', x: 900, y: -400 },
     { icon: 'devicon-angular-plain', name: 'Angular', color: '#DD0031', x: -950, y: -300 },
     
-    // Databases & Storage (left-center area)
     { icon: 'devicon-mysql-original', name: 'MySQL', color: '#4479A1', x: -750, y: 250 },
     { icon: 'devicon-redis-plain', name: 'Redis', color: '#DC382D', x: -400, y: 350 },
     { icon: 'devicon-graphql-plain', name: 'GraphQL', color: '#E10098', x: -850, y: 400 },
     
-    // Mobile Development (top-right corner)
     { icon: 'devicon-flutter-plain', name: 'Flutter', color: '#02569B', x: 950, y: -200 },
     { icon: 'devicon-android-plain', name: 'Android', color: '#3DDC84', x: 900, y: 50 },
     { icon: 'devicon-kotlin-plain', name: 'Kotlin', color: '#7F52FF', x: 750, y: 200 },
-    
-    // Testing & Quality (bottom-right)
+
     { icon: 'devicon-jest-plain', name: 'Jest', color: '#C21325', x: 650, y: 500 },
   ];
 
