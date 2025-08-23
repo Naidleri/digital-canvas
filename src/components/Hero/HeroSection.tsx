@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import GlassmorphicDotBg from '../fragments/GlassmorphicDotBg';
 
 const HeroSection = () => {
   const [currentRole, setCurrentRole] = useState(0);
