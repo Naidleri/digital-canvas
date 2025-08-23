@@ -1,7 +1,9 @@
+import InteractiveHarisSection from "./components/Interactive/InteractiveSection";
+
 function App() {
   return (
-    <div>
-      Hello Haris Ardiansyah
+    <div className="text-center">
+      <InteractiveHarisSection />
     </div>
   );
 }
