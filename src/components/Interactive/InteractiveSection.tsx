@@ -47,11 +47,11 @@ const InteractiveHarisSection = () => {
     { icon: 'devicon-linux-plain', name: 'Linux', color: '#FCC624', x: -250, y: 120 },
     { icon: 'devicon-ubuntu-plain', name: 'Ubuntu', color: '#E95420', x: 280, y: -80 },
     
-    { icon: 'devicon-vitejs-plain', name: 'Vite', color: '#646CFF', x: -180, y: 200 },
+    { icon: 'devicon-vitejs-plain', name: 'Vite', color: '#646CFF', x: -180, y: 260 },
     { icon: 'devicon-webpack-plain', name: 'Webpack', color: '#8DD6F9', x: 320, y: 180 },
-    { icon: 'devicon-babel-original', name: 'Babel', color: '#F9DC3E', x: -80, y: -180 },
+    { icon: 'devicon-babel-original', name: 'Babel', color: '#F9DC3E', x: -0, y: -240 },
     { icon: 'devicon-npm-original-wordmark', name: 'NPM', color: '#CB3837', x: 50, y: 220 },
-    { icon: 'devicon-yarn-original', name: 'Yarn', color: '#2C8EBB', x: -350, y: -120 },
+    { icon: 'devicon-yarn-original', name: 'Yarn', color: '#2C8EBB', x: -400, y: 20 },
     
     { icon: 'devicon-amazonwebservices-plain', name: 'AWS', color: '#232F3E', x: -800, y: 600 },
     { icon: 'devicon-firebase-plain', name: 'Firebase', color: '#FFCA28', x: 800, y: 600 },
