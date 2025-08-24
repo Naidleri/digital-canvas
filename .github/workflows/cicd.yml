@@ -2,9 +2,9 @@ name: CI/CD - React + Vite + Tailwind
 
 on:
   push:
-    branches: ["main"]
+    branches: ["development", "main"]
   pull_request:
-    branches: ["main"]
+    branches: ["development", "main"]
 
 jobs:
   # =========================
@@ -45,14 +45,16 @@ jobs:
         run: npm run build
 
       - name: Upload production-ready build
+        if: github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
 
   # =========================
-  # 2. Deploy to GitHub Pages
+  # 2. Deploy
   # =========================
   deploy:
+    if: github.ref == 'refs/heads/main'
     needs: quality-check
     runs-on: ubuntu-latest
     permissions:
