@@ -76,10 +76,8 @@ const InteractiveHarisSection = () => {
       className="relative w-full h-screen bg-white overflow-hidden cursor-move"
       onMouseMove={handleMouseMove}
     >
-      {/* Load Devicons CSS from installed package or CDN as fallback */}
       <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
-      
-      {/* Canvas Background with Tech Icons */}
+
       <div 
         className="absolute inset-0 transition-transform duration-200 ease-out"
         style={{
@@ -90,7 +88,6 @@ const InteractiveHarisSection = () => {
           top: '-150%'
         }}
       >
-        {/* Tech Icons scattered with proper spacing */}
         {techIcons.map((tech, index) => {
           return (
             <div
@@ -104,7 +101,6 @@ const InteractiveHarisSection = () => {
                 minHeight: '120px',
               }}
             >
-              {/* Icon container with proper padding */}
               <div 
                 className="w-24 h-24 flex items-center justify-center rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 bg-white/95 backdrop-blur-sm border-2 hover:border-4"
                 style={{ 
@@ -120,8 +116,6 @@ const InteractiveHarisSection = () => {
                   }}
                 />
               </div>
-              
-              {/* Enhanced tooltip */}
               <div className="absolute -bottom-14 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 scale-90 group-hover:scale-100 z-20">
                 <div className="relative">
                   <span 
@@ -139,8 +133,6 @@ const InteractiveHarisSection = () => {
             </div>
           );
         })}
-        
-        {/* Subtle grid pattern */}
         {[...Array(30)].map((_, i) => (
           <div
             key={`dot-${i}`}

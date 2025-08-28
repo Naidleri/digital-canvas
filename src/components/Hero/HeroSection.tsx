@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
+import { Parallax } from 'react-parallax';
 
 const HeroSection = () => {
   const [currentRole, setCurrentRole] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
-  const [isInView, setIsInView] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const [shouldParallax, setShouldParallax] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const roles = [
@@ -26,12 +28,13 @@ const HeroSection = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !hasAnimated) {
           setTimeout(() => {
-            setIsInView(true);
+            setHasAnimated(true);
+            setTimeout(() => {
+              setShouldParallax(true);
+            }, 2000);
           }, 100);
-        } else {
-          setIsInView(false);
         }
       },
       {
@@ -49,15 +52,14 @@ const HeroSection = () => {
         observer.unobserve(sectionRef.current);
       }
     };
-  }, []);
+  }, [hasAnimated]);
 
-  return (
-    
+  const heroContent = (
     <div className="min-h-screen flex items-center justify-center overflow-hidden relative">
       <div 
         ref={sectionRef}
         className={`absolute inset-0 bg-zinc-900 transition-all duration-1000 ease-out transform-gpu rounded-t-4xl ${
-          isInView 
+          hasAnimated 
             ? 'scale-100 opacity-100' 
             : 'scale-75 opacity-80'
         }`}
@@ -69,7 +71,7 @@ const HeroSection = () => {
       {/* Content container */}
       <div 
         className={`relative z-10 max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center px-6 py-20 transition-all duration-1000 ease-out delay-100 transform-gpu ${
-          isInView 
+          hasAnimated 
             ? 'scale-100 opacity-100' 
             : 'scale-75 opacity-50'
         }`}
@@ -118,7 +120,7 @@ const HeroSection = () => {
         </div>
         
         {/* right-content*/}
-        <div className={`relative transition-all duration-1200 delay-400 ${isVisible && isInView ? 'opacity-100 translate-x-0 scale-100' : 'opacity-0 translate-x-8 scale-95'}`}>
+        <div className={`relative transition-all duration-1200 delay-400 ${isVisible && hasAnimated ? 'opacity-100 translate-x-0 scale-100' : 'opacity-0 translate-x-8 scale-95'}`}>
           
           {/* Main Card */}
           <div className="relative bg-zinc-700 rounded-3xl shadow-2xl p-8 border border-gray-100 hover:shadow-3xl transition-shadow duration-300">
@@ -166,7 +168,7 @@ const HeroSection = () => {
                   <span 
                     key={tech}
                     className={`px-3 py-1 bg-gradient-to-r from-blue-100 to-purple-100 text-sm font-medium text-gray-700 rounded-full hover:scale-110 transition-all duration-200 ${
-                      isInView ? 'animate-fadeInUp' : 'opacity-0'
+                      hasAnimated ? 'animate-fadeInUp' : 'opacity-0'
                     }`}
                     style={{
                       animationDelay: `${600 + (index * 100)}ms`
@@ -181,10 +183,10 @@ const HeroSection = () => {
 
           {/* Background blur  */}
           <div className={`absolute -z-10 top-8 -right-8 w-32 h-32 bg-gradient-to-br from-blue-200 to-purple-200 rounded-full opacity-50 blur-2xl transition-all duration-1000 ${
-            isInView ? 'scale-100' : 'scale-75'
+            hasAnimated ? 'scale-100' : 'scale-75'
           }`}></div>
           <div className={`absolute -z-10 -bottom-8 -left-8 w-24 h-24 bg-gradient-to-br from-purple-200 to-blue-200 rounded-full opacity-50 blur-2xl transition-all duration-1000 delay-200 ${
-            isInView ? 'scale-100' : 'scale-75'
+            hasAnimated ? 'scale-100' : 'scale-75'
           }`}></div>
         </div>
 
@@ -192,38 +194,65 @@ const HeroSection = () => {
 
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div className={`absolute top-1/4 left-1/4 w-2 h-2 bg-blue-400 rounded-full opacity-80 transition-all duration-1000 ${
-          isInView ? 'scale-100 opacity-80' : 'scale-0 opacity-0'
+          hasAnimated ? 'scale-100 opacity-80' : 'scale-0 opacity-0'
         }`} style={{ animationDelay: '800ms' }}></div>
         <div className={`absolute top-3/4 right-1/3 w-1 h-1 bg-purple-400 rounded-full opacity-80 transition-all duration-1000 ${
-          isInView ? 'scale-100 opacity-80' : 'scale-0 opacity-0'
+          hasAnimated ? 'scale-100 opacity-80' : 'scale-0 opacity-0'
         }`} style={{ animationDelay: '1000ms' }}></div>
         <div className={`absolute top-1/2 right-1/4 w-1.5 h-1.5 bg-blue-300 rounded-full opacity-80 transition-all duration-1000 ${
-          isInView ? 'scale-100 opacity-80' : 'scale-0 opacity-0'
+          hasAnimated ? 'scale-100 opacity-80' : 'scale-0 opacity-0'
         }`} style={{ animationDelay: '1200ms' }}></div>
         <div className={`absolute bottom-1/4 left-1/3 w-1 h-1 bg-purple-300 rounded-full opacity-80 transition-all duration-1000 ${
-          isInView ? 'scale-100 opacity-80' : 'scale-0 opacity-0'
+          hasAnimated ? 'scale-100 opacity-80' : 'scale-0 opacity-0'
         }`} style={{ animationDelay: '1400ms' }}></div>
       </div>
-    {/* Animasi scroll*/}
-    <style>{`
-      @keyframes fadeInUp {
-        from {
+
+      <style>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-fadeInUp {
+          animation: fadeInUp 0.6s ease-out forwards;
           opacity: 0;
-          transform: translateY(20px);
         }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      
-      .animate-fadeInUp {
-        animation: fadeInUp 0.6s ease-out forwards;
-        opacity: 0;
-      }
-    `}</style>
-  </div>
+      `}</style>
+    </div>
   );
+  if (shouldParallax) {
+    return (
+      <Parallax
+        blur={0}
+        bgImage=""
+        bgImageAlt=""
+        strength={300}
+        renderLayer={(percentage) => (
+          <div
+            style={{
+              position: 'absolute',
+              background: 'transparent',
+              left: '50%',
+              top: '50%',
+              borderRadius: '50%',
+              transform: `translate(-50%, -50%) translateY(${percentage * 200}px)`,
+              width: percentage * 500,
+              height: percentage * 500,
+            }}
+          />
+        )}
+      >
+        {heroContent}
+      </Parallax>
+    );
+  }
+  return heroContent;
 };
 
 export default HeroSection;
