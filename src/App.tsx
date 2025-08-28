@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import InteractiveHarisSection from "./components/Interactive/InteractiveSection";
 import HeroSection from "./components/Hero/HeroSection";
 import ProjectSection from "./components/Projects/ProjectSetion";
+import TechStackSection from './components/Tech/TechStackSection';
 
 function App() {
   useEffect(() => {
@@ -19,6 +20,7 @@ function App() {
         <HeroSection />
       </div>
       <ProjectSection />
+      <TechStackSection />
 
       <style>{`
         * {
