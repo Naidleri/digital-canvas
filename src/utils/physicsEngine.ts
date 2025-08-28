@@ -116,7 +116,7 @@ export class PhysicsEngine {
 
   createBubble(
     id: string, 
-    tech: any, 
+    tech: TechNode, 
     position: Vector2D, 
     velocity?: Vector2D
   ): Bubble {
