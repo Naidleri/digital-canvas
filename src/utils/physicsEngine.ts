@@ -1,4 +1,5 @@
 import { Bubble, Vector2D, CollisionResult, PhysicsConfig } from '../models/TechStack';
+import { TechNode } from '../models/TechStack';
 
 export class PhysicsEngine {
   private config: PhysicsConfig;
@@ -134,7 +135,7 @@ export class PhysicsEngine {
 
 export class BubbleInitializer {
   static circlePattern(
-    techData: any[], 
+    techData: [string, TechNode][], 
     canvasWidth: number, 
     canvasHeight: number,
     physicsEngine: PhysicsEngine
@@ -155,7 +156,7 @@ export class BubbleInitializer {
   }
 
   static spiralPattern(
-    techData: any[], 
+    techData: [string, TechNode][],
     canvasWidth: number, 
     canvasHeight: number,
     physicsEngine: PhysicsEngine
@@ -176,7 +177,7 @@ export class BubbleInitializer {
   }
 
   static randomPattern(
-    techData: any[], 
+    techData: [string, TechNode][],
     canvasWidth: number, 
     canvasHeight: number,
     physicsEngine: PhysicsEngine

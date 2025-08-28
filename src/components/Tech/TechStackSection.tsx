@@ -1,13 +1,13 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { X, RotateCcw, Play, Pause, Activity } from 'lucide-react';
+import { RotateCcw, Play, Pause, Activity } from 'lucide-react';
 
 import { TechNode, Bubble, BubbleAnimationState, MouseInteraction } from '../../models/TechStack';
-import { techStackData, physicsConfig, categoryColors } from '../../data/techStackData';
+import { techStackData, physicsConfig } from '../../data/techStackData';
 import { PhysicsEngine, BubbleInitializer } from '../../utils/physicsEngine';
 import { CanvasRenderer } from '../../utils/canvasRenderer';
 
 const TechStackSection: React.FC = () => {
-  const [selectedNode, setSelectedNode] = useState<TechNode | null>(null);
+  const [, setSelectedNode] = useState<TechNode | null>(null);
   const [bubbles, setBubbles] = useState<Bubble[]>([]);
   const [animationState, setAnimationState] = useState<BubbleAnimationState>({
     isPlaying: true,
@@ -109,7 +109,7 @@ const TechStackSection: React.FC = () => {
         cancelAnimationFrame(animationState.animationFrame);
       }
     };
-  }, [animationState.isPlaying]);
+  }, [animationState.isPlaying, animationState.animationFrame]);
 
   useEffect(() => {
     if (!animationState.isPlaying) return;

@@ -50,7 +50,7 @@ export class CanvasRenderer {
       return Promise.reject(new Error("Invalid devicon class: " + iconClass));
     }
 
-    const [_, name, style] = match;
+    const [, name, style] = match;
     const url = `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${name}/${name}-${style}.svg`;
 
     return new Promise((resolve, reject) => {
