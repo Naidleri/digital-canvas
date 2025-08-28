@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import InteractiveHarisSection from "./components/Interactive/InteractiveSection";
 import HeroSection from "./components/Hero/HeroSection";
+import ProjectSection from "./components/Projects/ProjectSetion";
 
 function App() {
   useEffect(() => {
@@ -12,10 +13,13 @@ function App() {
   }, []);
 
   return (
-    <div className="text-center overflow-x-hidden">
+    <div className="overflow-x-hidden">
       <InteractiveHarisSection />
-      <HeroSection />
-      
+      <div className='text-center'>
+        <HeroSection />
+      </div>
+      <ProjectSection />
+
       <style>{`
         * {
           scroll-behavior: smooth;
