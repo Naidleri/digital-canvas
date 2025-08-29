@@ -4,6 +4,7 @@ import HeroSection from "./components/Hero/HeroSection";
 import ProjectSection from "./components/Projects/ProjectSetion";
 import TechStackSection from './components/Tech/TechStackSection';
 import Footer from './components/Footer/footerSection';
+import GlassNav, {GlassNavMobile} from './components/fragments/GlassNav';
 
 function App() {
   useEffect(() => {
@@ -16,13 +17,24 @@ function App() {
 
   return (
     <div className="overflow-x-hidden">
-      <InteractiveHarisSection />
-      <div className='text-center'>
+      <div id='interactive'>
+        <InteractiveHarisSection />
+      </div>
+      <div id='hero' className='text-center'>
         <HeroSection />
       </div>
-      <ProjectSection />
-      <TechStackSection />
-      <Footer />
+      <div id='projects'>
+        <ProjectSection />
+      </div>
+      <div id='tech'>
+        <TechStackSection />
+      </div>
+      <div id='footer'>
+        <Footer />
+      </div>
+
+      <GlassNav />
+      <GlassNavMobile />
 
       <style>{`
         * {
