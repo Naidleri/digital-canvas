@@ -14,8 +14,11 @@ interface FloatingProject extends Project {
 const ProjectSection = () => {
   const [floatingCards, setFloatingCards] = useState<FloatingProject[]>([]);
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const [cardAnimations, setCardAnimations] = useState<{[key: string]: boolean}>({});
   const animationRef = useRef<number | null>(null);
   const timeRef = useRef(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const generateFloatingCards = () => {
@@ -42,6 +45,41 @@ const ProjectSection = () => {
 
     generateFloatingCards();
   }, []);
+
+  // Intersection Observer for card animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          
+          // Animate cards one by one
+          projects.forEach((_, index) => {
+            setTimeout(() => {
+              setCardAnimations(prev => ({ 
+                ...prev, 
+                [projects[index].id]: true 
+              }));
+            }, index * 150); // 150ms delay between each card
+          });
+        }
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '-50px 0px -50px 0px'
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, [hasAnimated]);
 
   useEffect(() => {
     const animate = () => {
@@ -77,28 +115,34 @@ const ProjectSection = () => {
   };
 
   return (
-    <div className="bg-white py-36 px-16 rounded-t-4xl relative z-20 -mt-8">
+    <div ref={sectionRef} className="bg-white py-36 px-16 rounded-t-4xl relative z-20 -mt-8">
       {/* Header */}
-      <div className="mb-16 ">
+      <div className="mb-16">
         <div className="inline-block border-2 border-gray-900 rounded-4xl px-6 py-3">
           <h2 className="text-l font-bold text-gray-900">Projects</h2>
         </div>
-        <p className="text-gray-700 text-lg pt-8  ">
+        <p className="text-gray-700 text-lg pt-8">
           Floating project cards with gentle animations. Hover to explore each project in detail.
         </p>
       </div>
 
-      {/* Card */}
+      {/* Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 justify-items-center">
         {floatingCards.map((card: FloatingProject) => {
           const isHovered = hoveredCard === card.id;
+          const isAnimated = cardAnimations[card.id];
 
           return (
             <div
               key={card.id}
-              className="w-80 h-96 cursor-pointer transition-all duration-500 ease-out flex"
+              className={`w-80 h-96 cursor-pointer transition-all duration-700 ease-out flex ${
+                isAnimated 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-12'
+              }`}
               style={{
-                transform: getCardTransform(card),
+                transform: `${getCardTransform(card)} ${!isAnimated ? 'translateY(48px)' : 'translateY(0px)'}`,
+                transitionTimingFunction: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
               }}
               onMouseEnter={() => setHoveredCard(card.id)}
               onMouseLeave={() => setHoveredCard(null)}
@@ -159,7 +203,7 @@ const ProjectSection = () => {
                   </div>
 
                   <div className="flex-grow" />
-=
+
                   <div className="mt-4 w-full h-48 rounded-2xl relative overflow-hidden transition-all duration-700">
                     <img
                       src={card.image}
