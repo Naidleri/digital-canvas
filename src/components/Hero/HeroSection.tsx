@@ -3,9 +3,17 @@ import { Parallax } from 'react-parallax';
 
 const HeroSection = () => {
   const [currentRole, setCurrentRole] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
+  const [, setIsVisible] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
   const [shouldParallax, setShouldParallax] = useState(false);
+  const [textAnimations, setTextAnimations] = useState({
+    greeting: false,
+    name: false,
+    role: false,
+    description: false,
+    card: false
+  });
+  
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const roles = [
@@ -25,16 +33,22 @@ const HeroSection = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // Text animations on scroll/view
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          
+          setTimeout(() => setTextAnimations(prev => ({ ...prev, greeting: true })), 200);
+          setTimeout(() => setTextAnimations(prev => ({ ...prev, name: true })), 400);
+          setTimeout(() => setTextAnimations(prev => ({ ...prev, role: true })), 600);
+          setTimeout(() => setTextAnimations(prev => ({ ...prev, description: true })), 800);
+          setTimeout(() => setTextAnimations(prev => ({ ...prev, card: true })), 1000);
+
           setTimeout(() => {
-            setHasAnimated(true);
-            setTimeout(() => {
-              setShouldParallax(true);
-            }, 2000);
-          }, 100);
+            setShouldParallax(true);
+          }, 2000);
         }
       },
       {
@@ -69,21 +83,30 @@ const HeroSection = () => {
       />
       
       {/* Content container */}
-      <div 
-        className={`relative z-10 max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center px-6 py-20 transition-all duration-1000 ease-out delay-100 transform-gpu ${
-          hasAnimated 
-            ? 'scale-100 opacity-100' 
-            : 'scale-75 opacity-50'
-        }`}
-        style={{
-          transformOrigin: 'center center',
-        }}
-      >
-        <div className={`space-y-8 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="space-y-2">
+      <div className="relative z-10 max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center px-6 py-20">
+        
+        <div className="space-y-8">
+          <div className={`space-y-2 transition-all duration-800 ease-out ${
+            textAnimations.greeting 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-8'
+          }`}
+          style={{
+            transitionTimingFunction: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+          }}>
             <p className="text-lg text-gray-300 font-medium">
               👋 Hello, I'm
             </p>
+          </div>
+
+          <div className={`space-y-2 transition-all duration-900 ease-out ${
+            textAnimations.name 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-12'
+          }`}
+          style={{
+            transitionTimingFunction: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+          }}>
             <h1 className="text-5xl lg:text-6xl font-black text-white leading-tight">
               HARIS
               <span className="block text-4xl lg:text-5xl bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
@@ -92,7 +115,14 @@ const HeroSection = () => {
             </h1>
           </div>
 
-          <div className="h-16 flex items-center">
+          <div className={`h-16 flex items-center transition-all duration-1000 ease-out ${
+            textAnimations.role 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-16'
+          }`}
+          style={{
+            transitionTimingFunction: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+          }}>
             <span className="text-xl text-gray-200 mr-3">I'm a passionate</span>
             <div className="relative overflow-hidden h-10">
               <div 
@@ -111,16 +141,31 @@ const HeroSection = () => {
             </div>
           </div>
 
-          <p className="text-lg text-gray-300 leading-relaxed max-w-xl">
-            A <strong className="text-white">University of Jember</strong> Information Technology student committed to developing 
-            <span className="text-blue-400 font-semibold"> innovative mobile applications</span> and 
-            <span className="text-purple-400 font-semibold"> effective digital solutions</span>. 
-            Ready to contribute to dynamic teams and exceed user expectations.
-          </p>
+          <div className={`transition-all duration-1100 ease-out ${
+            textAnimations.description 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-20'
+          }`}
+          style={{
+            transitionTimingFunction: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+          }}>
+            <p className="text-lg text-gray-300 leading-relaxed max-w-xl">
+              A <strong className="text-white">University of Jember</strong> Information Technology student committed to developing 
+              <span className="text-blue-400 font-semibold"> innovative mobile applications</span> and 
+              <span className="text-purple-400 font-semibold"> effective digital solutions</span>. 
+              Ready to contribute to dynamic teams and exceed user expectations.
+            </p>
+          </div>
         </div>
         
-        {/* right-content*/}
-        <div className={`relative transition-all duration-1200 delay-400 ${isVisible && hasAnimated ? 'opacity-100 translate-x-0 scale-100' : 'opacity-0 translate-x-8 scale-95'}`}>
+        <div className={`relative transition-all duration-1200 ease-out ${
+          textAnimations.card 
+            ? 'opacity-100 translate-x-0 scale-100' 
+            : 'opacity-0 translate-x-8 scale-95'
+        }`}
+        style={{
+          transitionTimingFunction: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+        }}>
           
           {/* Main Card */}
           <div className="relative bg-zinc-700 rounded-3xl shadow-2xl p-8 border border-gray-100 hover:shadow-3xl transition-shadow duration-300">
@@ -171,7 +216,7 @@ const HeroSection = () => {
                       hasAnimated ? 'animate-fadeInUp' : 'opacity-0'
                     }`}
                     style={{
-                      animationDelay: `${600 + (index * 100)}ms`
+                      animationDelay: `${1200 + (index * 100)}ms`
                     }}
                   >
                     {tech}
