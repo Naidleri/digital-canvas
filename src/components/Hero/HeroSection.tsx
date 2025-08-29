@@ -3,7 +3,7 @@ import { Parallax } from 'react-parallax';
 
 const HeroSection = () => {
   const [currentRole, setCurrentRole] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
+  const [, setIsVisible] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
   const [shouldParallax, setShouldParallax] = useState(false);
   const [textAnimations, setTextAnimations] = useState({
