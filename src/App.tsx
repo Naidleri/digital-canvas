@@ -3,6 +3,7 @@ import InteractiveHarisSection from "./components/Interactive/InteractiveSection
 import HeroSection from "./components/Hero/HeroSection";
 import ProjectSection from "./components/Projects/ProjectSetion";
 import TechStackSection from './components/Tech/TechStackSection';
+import Footer from './components/Footer/footerSection';
 
 function App() {
   useEffect(() => {
@@ -21,6 +22,7 @@ function App() {
       </div>
       <ProjectSection />
       <TechStackSection />
+      <Footer />
 
       <style>{`
         * {
