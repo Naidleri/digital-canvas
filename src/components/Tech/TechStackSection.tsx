@@ -297,7 +297,7 @@ const TechStackSection: React.FC = () => {
   }, []);
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50 relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50 relative overflow-hidden z-20 -mt-8 rounded-t-3xl">
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-green-500 to-blue-500 rounded-full blur-3xl"></div>
@@ -309,7 +309,7 @@ const TechStackSection: React.FC = () => {
             Tech Stack <span className="text-blue-600">Physics Sandbox</span>
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-6">
-            Interactive physics playground with floating tech bubbles. 
+            Interactive physics playground with floating my tech bubbles. 
             Drag to fling bubbles around, watch them bounce and collide naturally!
           </p>
           
@@ -346,7 +346,7 @@ const TechStackSection: React.FC = () => {
         </div>
         <div 
           ref={containerRef}
-          className="relative w-full h-[600px] bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200"
+          className="relative w-full h-[600px] bg-white rounded-2xl  overflow-hidden border border-gray-200"
         >
           <canvas
             ref={canvasRef}
