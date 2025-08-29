@@ -65,6 +65,12 @@ export class CanvasRenderer {
     });
   }
 
+  async preloadIcons(iconClasses: string[]): Promise<void> {
+    await Promise.all(
+      iconClasses.map(cls => this.loadIcon(cls))
+    );
+  }
+
   async drawBubble(bubble: Bubble): Promise<void> {
     const { x, y, radius, tech, isDragging } = bubble;
 
@@ -123,14 +129,11 @@ export class CanvasRenderer {
     this.ctx.fill();
   }
 
-  private async drawBubbleIcon(x: number, y: number, iconClass: string, radius: number): Promise<void> {
-    try {
-      const img = await this.loadIcon(iconClass);
-      const size = radius * 1.2;
-      this.ctx.drawImage(img, x - size / 2, y - size / 2, size, size);
-    } catch (err) {
-      console.warn("Failed to load icon:", iconClass, err);
-    }
+  private drawBubbleIcon(x: number, y: number, iconClass: string, radius: number): void {
+    const img = this.iconCache[iconClass];
+    if (!img) return; 
+    const size = radius * 1.2;
+    this.ctx.drawImage(img, x - size / 2, y - size / 2, size, size);
   }
 
   private drawBubbleLabel(x: number, y: number, text: string): void {

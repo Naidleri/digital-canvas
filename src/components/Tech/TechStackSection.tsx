@@ -32,11 +32,10 @@ const TechStackSection: React.FC = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    try {
-      rendererRef.current = new CanvasRenderer(canvas);
-    } catch (error) {
-      console.error('Failed to initialize canvas renderer:', error);
-    }
+    const renderer = new CanvasRenderer(canvas);
+    rendererRef.current = renderer;
+
+    renderer.preloadIcons(Object.values(techStackData).map(t => t.icon));
   }, []);
 
   const initializeBubbles = useCallback(() => {
